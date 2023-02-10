@@ -41,7 +41,7 @@ public class NavPage extends BasePage {
 
     public WebElement getLinkLogin() {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' Login ')]]"));
-    } // ask about whether it should be a link or a button, project docs treat it as a button but that's not what it is!
+    }
 
     public WebElement buttonLogout() {
         return driver.findElement(By.xpath("//button[span[contains(text(), ' Logout ')]]"));
@@ -69,6 +69,6 @@ public class NavPage extends BasePage {
 
     public WebElement buttonLanguageUa() {
         return driver.findElement(By.className("btnUA"));
-    } // again, project docs don't mention this, but it should absolutely be included
+    }
 
 }
