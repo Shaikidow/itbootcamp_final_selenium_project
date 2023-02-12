@@ -50,6 +50,7 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         driver.get(baseUrl);
+        driver.manage().window().maximize();
     }
 
     @AfterMethod
@@ -70,7 +71,7 @@ public abstract class BaseTest {
     @AfterClass
     public void afterClass() throws InterruptedException {
 
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         driver.quit();
 
     }
