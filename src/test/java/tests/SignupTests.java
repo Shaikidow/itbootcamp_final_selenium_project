@@ -76,8 +76,7 @@ public class SignupTests extends BaseTest {
         signupPage.inputPassword().sendKeys("12345");
         signupPage.inputConfirmPassword().sendKeys("12345");
         signupPage.buttonSignMeUp().click();
-        Thread.sleep(1000);
-        driver.get(baseUrl + "/home");
+        Thread.sleep(1000); // test docs require driver.get(baseUrl + "/home") instead, which doesn't seem to work
 
         Assert.assertTrue(messagePopUpPage.getVerificationDialogHeader().getText()
                 .contains("IMPORTANT: Verify your account"),
