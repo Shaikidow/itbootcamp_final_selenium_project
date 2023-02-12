@@ -20,7 +20,6 @@ public class MessagePopUpPage extends BasePage {
 
     public List<WebElement> getErrorPopupMessages() {
         return driver.findElement(By.className("error")).findElements(By.tagName("li"));
-//        return driver.findElements(By.xpath("//div[contains(@class, 'error')]//ul/li"));
     }
 
     public WebElement buttonCloseErrorPopup() {
@@ -32,8 +31,7 @@ public class MessagePopUpPage extends BasePage {
     }
 
     public WebElement getVerificationDialogHeader() {
-        return driver.findElement(By.linkText(" IMPORTANT: Verify your account "));
-//        return driver.findElement(By.xpath("//div[contains(@class, 'dlgVerifyAccount')]"));
+        return driver.findElement(By.xpath("//div[contains(@class, 'dlgVerifyAccount')]"));
     }
 
     public WebElement buttonCloseVerificationDialog() {

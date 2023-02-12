@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     }
 
     public WebElement buttonLogin() {
-        return driver.findElement(By.xpath("//*[@type='submit']"));
+        return driver.findElement(By.xpath("//button[@type='submit']"));
 //        return driver.findElement(By.className("column")).findElement(By.tagName("button"));
     }
 
