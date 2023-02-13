@@ -85,6 +85,8 @@ public class SignupTests extends BaseTest {
         messagePopUpPage.buttonCloseVerificationDialog().click();
         navPage.buttonLogout().click();
 
+//      when performing this test multiple times within 30min., change the e-mail address in line 75 so it doesn't crash
+
     }
 
 }

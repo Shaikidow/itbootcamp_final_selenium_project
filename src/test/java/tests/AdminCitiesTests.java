@@ -90,6 +90,7 @@ public class AdminCitiesTests extends BaseTest {
         Assert.assertEquals(citiesPage.getTableCell(1, 1).getText(),
                 "Dimitrije Mandić's city Edited",
                 "City name does not match search query.");
+
     }
 
     @Test (priority = 60)

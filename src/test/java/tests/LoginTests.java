@@ -48,7 +48,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
                         .contains("User does not exists")),
-                "Incorrect or missing message."); // this works for WebElement lists, I should come back to it!
+                "Incorrect or missing message.");
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/login",
@@ -68,7 +68,7 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
                         .contains("Wrong password")),
-                "Incorrect or missing message."); // this works for WebElement lists, I should come back to it!
+                "Incorrect or missing message.");
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/login",
@@ -100,19 +100,9 @@ public class LoginTests extends BaseTest {
     @Description("Test #6: Logout")
     public void logout() {
 
-//        IMPORTANT: in order for this test to be passed alone, you need to enable the commented-out block of code below
-
-//        navPage.getLinkLogin().click();
-//        loginPage.inputEmail().sendKeys("admin@admin.com");
-//        loginPage.inputPassword().sendKeys("12345");
-//        loginPage.buttonLogin().click();
-//        wait.until(ExpectedConditions.urlToBe(baseUrl + "/home"));
-//        Assert.assertEquals(driver.getCurrentUrl(),
-//                baseUrl + "/home",
-//                "Not on home page.");
-
         Assert.assertTrue(navPage.buttonLogout().isDisplayed(),
                 "Logout button not visible.");
+
         navPage.buttonLogout().click();
 
     }
