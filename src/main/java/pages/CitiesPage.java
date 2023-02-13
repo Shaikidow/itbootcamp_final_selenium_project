@@ -22,6 +22,10 @@ public class CitiesPage extends BasePage {
         return driver.findElement(By.id("search"));
     }
 
+    public WebElement inputItemName() {
+        return driver.findElement(By.id("name"));
+    }
+
     public void waitForNewEditItemDialogToBecomeVisible() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dlgNewEditItem")));
     }

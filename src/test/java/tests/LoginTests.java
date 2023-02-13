@@ -44,10 +44,10 @@ public class LoginTests extends BaseTest {
         loginPage.inputEmail().sendKeys("non-existing-user@gmail.com");
         loginPage.inputPassword().sendKeys("password123");
         loginPage.buttonLogin().click();
-        messagePopUpPage.waitForErrorPopupToBecomeVisible();
+        messagePopUpPage.waitForPopupToBecomeVisible();
 
-        Assert.assertTrue(messagePopUpPage.getErrorPopupMessages().stream().anyMatch(e->e.getText()
-                        .equals("User does not exists")),
+        Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
+                        .contains("User does not exists")),
                 "Incorrect or missing message."); // this works for WebElement lists, I should come back to it!
 
         Assert.assertEquals(driver.getCurrentUrl(),
@@ -64,10 +64,10 @@ public class LoginTests extends BaseTest {
         loginPage.inputEmail().sendKeys("admin@admin.com");
         loginPage.inputPassword().sendKeys("password123");
         loginPage.buttonLogin().click();
-        messagePopUpPage.waitForErrorPopupToBecomeVisible();
+        messagePopUpPage.waitForPopupToBecomeVisible();
 
-        Assert.assertTrue(messagePopUpPage.getErrorPopupMessages().stream().anyMatch(e->e.getText()
-                        .equals("Wrong password")),
+        Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
+                        .contains("Wrong password")),
                 "Incorrect or missing message."); // this works for WebElement lists, I should come back to it!
 
         Assert.assertEquals(driver.getCurrentUrl(),

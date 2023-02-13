@@ -53,9 +53,9 @@ public class SignupTests extends BaseTest {
         signupPage.inputPassword().sendKeys("12345");
         signupPage.inputConfirmPassword().sendKeys("12345");
         signupPage.buttonSignMeUp().click();
-        messagePopUpPage.waitForErrorPopupToBecomeVisible();
+        messagePopUpPage.waitForPopupToBecomeVisible();
 
-        Assert.assertTrue(messagePopUpPage.getErrorPopupMessages().stream().anyMatch(e->e.getText()
+        Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
                         .equals("E-mail already exists")),
                 "Incorrect or missing message.");
 

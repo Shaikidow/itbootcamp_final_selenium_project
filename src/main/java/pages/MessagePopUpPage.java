@@ -14,16 +14,22 @@ public class MessagePopUpPage extends BasePage {
         super(driver, wait);
     }
 
-    public void waitForErrorPopupToBecomeVisible() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("error")));
+    public void waitForPopupToBecomeVisible() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath
+                ("//div[contains(@class, 'v-snack__wrapper') " +
+                        "and not(contains(@style, 'display: none;'))]")));
     }
 
-    public List<WebElement> getErrorPopupMessages() {
-        return driver.findElement(By.className("error")).findElements(By.tagName("li"));
+    public List<WebElement> getPopupElementsContainingText() {
+        return driver.findElements(By.xpath
+                ("//*[contains(@class, 'v-snack__wrapper')]//*[contains(text(), '')]"));
     }
 
-    public WebElement buttonCloseErrorPopup() {
-        return driver.findElement(By.className("error")).findElement(By.tagName("button"));
+    public WebElement buttonClosePopup() {
+        return driver.findElement(By.xpath
+                ("//div[contains(@class, 'v-snack__wrapper') " +
+                        "and not(contains(@style, 'display: none;'))]"))
+                .findElement(By.tagName("button"));
     }
 
     public void waitForVerificationDialogToBecomeVisible() {
