@@ -23,6 +23,10 @@ public class NavPage extends BasePage {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' My Profile ')]]"));
     }
 
+    public WebElement getPageHeader() {
+        return driver.findElement(By.tagName("h1"));
+    }
+
     public WebElement buttonAdmin() {
         return driver.findElement(By.xpath("//button[span[contains(text(), ' Admin ')]]"));
     }
