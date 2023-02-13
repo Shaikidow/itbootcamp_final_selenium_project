@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -50,7 +51,7 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforeMethod() {
         driver.get(baseUrl);
-        driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1920, 1080));
     }
 
     @AfterMethod
