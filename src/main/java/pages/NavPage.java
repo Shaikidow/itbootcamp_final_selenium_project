@@ -11,15 +11,15 @@ public class NavPage extends BasePage {
         super(driver, wait);
     }
 
-    public WebElement getLinkHome() {
+    public WebElement getHomeLink() {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' Home ')]]"));
     }
 
-    public WebElement getLinkAbout() {
+    public WebElement getAboutLink() {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' About ')]]"));
     }
 
-    public WebElement getLinkMyProfile() {
+    public WebElement getMyProfileLink() {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' My Profile ')]]"));
     }
 
@@ -27,51 +27,51 @@ public class NavPage extends BasePage {
         return driver.findElement(By.tagName("h1"));
     }
 
-    public WebElement buttonAdmin() {
+    public WebElement getAdminButton() {
         return driver.findElement(By.xpath("//button[span[contains(text(), ' Admin ')]]"));
     }
 
-    public WebElement getLinkAdminCities() {
+    public WebElement getAdminCitiesLink() {
         return driver.findElement(By.xpath("//a[div[contains(text(), 'Cities')]]"));
     }
 
-    public WebElement getLinkAdminUsers() {
+    public WebElement getAdminUsersLink() {
         return driver.findElement(By.xpath("//a[div[contains(text(), 'Users')]]"));
     }
 
-    public WebElement getLinkSignUp() {
+    public WebElement getSignUpLink() {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' Sign Up ')]]"));
     }
 
-    public WebElement getLinkLogin() {
+    public WebElement getLoginLink() {
         return driver.findElement(By.xpath("//a[span[contains(text(), ' Login ')]]"));
     }
 
-    public WebElement buttonLogout() {
+    public WebElement getLogoutButton() {
         return driver.findElement(By.xpath("//button[span[contains(text(), ' Logout ')]]"));
     }
 
-    public WebElement buttonLanguageSelect() {
+    public WebElement getLocaleActivationButton() {
         return driver.findElement(By.className("btnLocaleActivation"));
     }
 
-    public WebElement buttonLanguageEn() {
+    public WebElement getLanguageButtonEn() {
         return driver.findElement(By.className("btnEN"));
     }
 
-    public WebElement buttonLanguageEs() {
+    public WebElement getLanguageButtonEs() {
         return driver.findElement(By.className("btnES"));
     }
 
-    public WebElement buttonLanguageFr() {
+    public WebElement getLanguageButtonFr() {
         return driver.findElement(By.className("btnFR"));
     }
 
-    public WebElement buttonLanguageCn() {
+    public WebElement getLanguageButtonCn() {
         return driver.findElement(By.className("btnCN"));
     }
 
-    public WebElement buttonLanguageUa() {
+    public WebElement getLanguageButtonUa() {
         return driver.findElement(By.className("btnUA"));
     }
 

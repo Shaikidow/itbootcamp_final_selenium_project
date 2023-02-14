@@ -8,15 +8,15 @@ public class AdminCitiesTests extends BaseTest {
 
     @Test(priority = 10)
     @Description("Test #1: Visits admin cities page and lists cities")
-    public void visitsAdminCitiesPageAndListsCities() throws InterruptedException {
+    public void visitsAdminCitiesPageAndListsCities() {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("admin@admin.com");
-        loginPage.inputPassword().sendKeys("12345");
-        loginPage.buttonLogin().click();
-        Thread.sleep(1000);
-        navPage.buttonAdmin().click();
-        navPage.getLinkAdminCities().click();
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getPasswordInput().sendKeys("12345");
+        loginPage.getLoginButton().click();
+        messagePopUpPage.waitForProgressBarToBecomeInvisible();
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesLink().click();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/admin/cities",
@@ -28,12 +28,12 @@ public class AdminCitiesTests extends BaseTest {
     @Description("Test #2: Checks input types for create/edit new city")
     public void checksInputTypesForCreateEditNewCity() {
 
-        navPage.buttonAdmin().click();
-        navPage.getLinkAdminCities().click();
-        citiesPage.buttonNewItem().click();
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesLink().click();
+        citiesPage.getNewItemButton().click();
         citiesPage.waitForNewEditItemDialogToBecomeVisible();
 
-        Assert.assertEquals(citiesPage.inputItemName().getAttribute("type"),
+        Assert.assertEquals(citiesPage.getNameInput().getAttribute("type"),
                 "text",
                 "Input type not 'text'.");
 
@@ -43,12 +43,12 @@ public class AdminCitiesTests extends BaseTest {
     @Description("Test #3: Create new city")
     public void createNewCity() {
 
-        navPage.buttonAdmin().click();
-        navPage.getLinkAdminCities().click();
-        citiesPage.buttonNewItem().click();
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesLink().click();
+        citiesPage.getNewItemButton().click();
         citiesPage.waitForNewEditItemDialogToBecomeVisible();
-        citiesPage.inputItemName().sendKeys("Dimitrije Mandić's city");
-        citiesPage.buttonSave().click();
+        citiesPage.getNameInput().sendKeys("Dimitrije Mandić's city");
+        citiesPage.getSaveButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
@@ -61,13 +61,13 @@ public class AdminCitiesTests extends BaseTest {
     @Description("Test #4: Edit city")
     public void editCity() {
 
-        navPage.buttonAdmin().click();
-        navPage.getLinkAdminCities().click();
-        citiesPage.inputSearch().sendKeys("Dimitrije Mandić's city");
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesLink().click();
+        citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city");
         citiesPage.waitForNumberOfTableRowsToAppear(1);
         citiesPage.getEditButtonByTableRow(1).click();
-        citiesPage.inputItemName().sendKeys(" Edited");
-        citiesPage.buttonSave().click();
+        citiesPage.getNameInput().sendKeys(" Edited");
+        citiesPage.getSaveButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
@@ -80,11 +80,11 @@ public class AdminCitiesTests extends BaseTest {
     @Description("Test #5: Search city")
     public void searchCity() {
 
-        navPage.buttonAdmin().click();
-        navPage.getLinkAdminCities().click();
-        citiesPage.inputSearch().click();
-        citiesPage.inputSearch().clear();
-        citiesPage.inputSearch().sendKeys("Dimitrije Mandić's city Edited");
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesLink().click();
+        citiesPage.getSearchInput().click();
+        citiesPage.getSearchInput().clear();
+        citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city Edited");
         citiesPage.waitForNumberOfTableRowsToAppear(1);
 
         Assert.assertEquals(citiesPage.getTableCell(1, 1).getText(),
@@ -97,11 +97,11 @@ public class AdminCitiesTests extends BaseTest {
     @Description("Test #6: Delete city")
     public void deleteCity() {
 
-        navPage.buttonAdmin().click();
-        navPage.getLinkAdminCities().click();
-        citiesPage.inputSearch().click();
-        citiesPage.inputSearch().clear();
-        citiesPage.inputSearch().sendKeys("Dimitrije Mandić's city Edited");
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesLink().click();
+        citiesPage.getSearchInput().click();
+        citiesPage.getSearchInput().clear();
+        citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city Edited");
         citiesPage.waitForNumberOfTableRowsToAppear(1);
 
         Assert.assertEquals(citiesPage.getTableCell(1, 1).getText(),
@@ -110,7 +110,7 @@ public class AdminCitiesTests extends BaseTest {
 
         citiesPage.getDeleteButtonByTableRow(1).click();
         citiesPage.waitForDeleteWarningToAppear();
-        citiesPage.buttonDelete().click();
+        citiesPage.getDeleteButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()

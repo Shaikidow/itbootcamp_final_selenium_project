@@ -10,9 +10,9 @@ public class LoginTests extends BaseTest {
     @Description("Test #1: Visits login page")
     public void visitsLoginPage() {
 
-        navPage.buttonLanguageSelect().click();
-        navPage.buttonLanguageEn().click();
-        navPage.getLinkLogin().click();
+        navPage.getLocaleActivationButton().click();
+        navPage.getLanguageButtonEn().click();
+        navPage.getLoginLink().click();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/login",
@@ -24,13 +24,13 @@ public class LoginTests extends BaseTest {
     @Description("Test #2: Checks input types")
     public void checksInputTypes() {
 
-        navPage.getLinkLogin().click();
+        navPage.getLoginLink().click();
 
-        Assert.assertEquals(loginPage.inputEmail().getAttribute("type"),
+        Assert.assertEquals(loginPage.getEmailInput().getAttribute("type"),
                 "email",
                 "Input type not 'email'.");
 
-        Assert.assertEquals(loginPage.inputPassword().getAttribute("type"),
+        Assert.assertEquals(loginPage.getPasswordInput().getAttribute("type"),
                 "password",
                 "Input type not 'password'.");
 
@@ -40,10 +40,10 @@ public class LoginTests extends BaseTest {
     @Description("Test #3: Displays errors when user does not exist")
     public void displaysErrorsWhenUserDoesNotExist() {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("non-existing-user@gmail.com");
-        loginPage.inputPassword().sendKeys("password123");
-        loginPage.buttonLogin().click();
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("non-existing-user@gmail.com");
+        loginPage.getPasswordInput().sendKeys("password123");
+        loginPage.getLoginButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
@@ -60,10 +60,10 @@ public class LoginTests extends BaseTest {
     @Description("Test #4: Displays errors when password is wrong")
     public void displaysErrorsWhenPasswordIsWrong() {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("admin@admin.com");
-        loginPage.inputPassword().sendKeys("password123");
-        loginPage.buttonLogin().click();
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getPasswordInput().sendKeys("password123");
+        loginPage.getLoginButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
@@ -78,13 +78,13 @@ public class LoginTests extends BaseTest {
 
     @Test (priority = 50)
     @Description("Test #5: Login")
-    public void login() throws InterruptedException {
+    public void login() {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("admin@admin.com");
-        loginPage.inputPassword().sendKeys("12345");
-        loginPage.buttonLogin().click();
-        Thread.sleep(1000);
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getPasswordInput().sendKeys("12345");
+        loginPage.getLoginButton().click();
+        messagePopUpPage.waitForProgressBarToBecomeInvisible();
 
 //      here I would usually use
 //      wait.until(ExpectedConditions.urlToBe(baseUrl + "/home"));
@@ -100,10 +100,10 @@ public class LoginTests extends BaseTest {
     @Description("Test #6: Logout")
     public void logout() {
 
-        Assert.assertTrue(navPage.buttonLogout().isDisplayed(),
+        Assert.assertTrue(navPage.getLogoutButton().isDisplayed(),
                 "Logout button not visible.");
 
-        navPage.buttonLogout().click();
+        navPage.getLogoutButton().click();
 
     }
 

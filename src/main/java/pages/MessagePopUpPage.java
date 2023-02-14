@@ -26,7 +26,7 @@ public class MessagePopUpPage extends BasePage {
                                "//*[contains(text(), '')]"));
     }
 
-    public WebElement buttonClosePopup() {
+    public WebElement getClosePopupButton() {
         return driver.findElement(By.xpath
                 ("//div[contains(@class, 'v-snack__wrapper') " +
                                "and not(contains(@style, 'display: none;'))]"))
@@ -41,7 +41,7 @@ public class MessagePopUpPage extends BasePage {
         return driver.findElement(By.xpath("//div[contains(@class, 'dlgVerifyAccount')]"));
     }
 
-    public WebElement buttonCloseVerificationDialog() {
+    public WebElement getCloseVerificationDialogButton() {
         return driver.findElement(By.className("btnClose"));
     }
 

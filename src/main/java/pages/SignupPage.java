@@ -11,23 +11,23 @@ public class SignupPage extends BasePage {
         super(driver, wait);
     }
 
-    public WebElement inputName() {
+    public WebElement getNameInput() {
         return driver.findElement(By.id("name"));
     }
 
-    public WebElement inputEmail() {
+    public WebElement getEmailInput() {
         return driver.findElement(By.id("email"));
     }
 
-    public WebElement inputPassword() {
+    public WebElement getPasswordInput() {
         return driver.findElement(By.id("password"));
     }
 
-    public WebElement inputConfirmPassword() {
+    public WebElement getConfirmPasswordInput() {
         return driver.findElement(By.id("confirmPassword"));
     }
 
-    public WebElement buttonSignMeUp() {
+    public WebElement getSignMeUpButton() {
         return driver.findElement(By.xpath("//button[@type='submit']"));
 //        return driver.findElement(By.className("column")).findElement(By.tagName("button"));
     }

@@ -6,23 +6,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 public class CitiesPage extends BasePage {
 
     public CitiesPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
 
-    public WebElement buttonNewItem() {
+    public WebElement getNewItemButton() {
         return driver.findElement(By.className("btnNewItem"));
     }
 
-    public WebElement inputSearch() {
+    public WebElement getSearchInput() {
         return driver.findElement(By.id("search"));
     }
 
-    public WebElement inputItemName() {
+    public WebElement getNameInput() {
         return driver.findElement(By.id("name"));
     }
 
@@ -35,11 +33,11 @@ public class CitiesPage extends BasePage {
                 .presenceOfElementLocated(By.xpath("//div[div[header[contains(@class, 'warning')]]]")));
     } // it's important to stress that, unlike the new/edit dialogue, this one doesn't just exist in an invisible manner
 
-    public WebElement buttonSave() {
+    public WebElement getSaveButton() {
         return driver.findElement(By.className("btnSave"));
     }
 
-    public WebElement buttonDelete() {
+    public WebElement getDeleteButton() {
         return driver.findElement(By.xpath("//button[span[contains(text(), ' Delete ')]]"));
     }
 

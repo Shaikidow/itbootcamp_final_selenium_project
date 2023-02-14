@@ -10,7 +10,7 @@ public class SignupTests extends BaseTest {
     @Description("Test #1: Visits signup page")
     public void visitsSignupPage() {
 
-        navPage.getLinkSignUp().click();
+        navPage.getSignUpLink().click();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/signup",
@@ -22,17 +22,17 @@ public class SignupTests extends BaseTest {
     @Description("Test #2: Checks input types")
     public void checksInputTypes() {
 
-        navPage.getLinkSignUp().click();
+        navPage.getSignUpLink().click();
 
-        Assert.assertEquals(signupPage.inputEmail().getAttribute("type"),
+        Assert.assertEquals(signupPage.getEmailInput().getAttribute("type"),
                 "email",
                 "Input type not 'email'.");
 
-        Assert.assertEquals(signupPage.inputPassword().getAttribute("type"),
+        Assert.assertEquals(signupPage.getPasswordInput().getAttribute("type"),
                 "password",
                 "Input type not 'password'.");
 
-        Assert.assertEquals(signupPage.inputConfirmPassword().getAttribute("type"),
+        Assert.assertEquals(signupPage.getConfirmPasswordInput().getAttribute("type"),
                 "password",
                 "Input type not 'password'.");
 
@@ -42,17 +42,17 @@ public class SignupTests extends BaseTest {
     @Description("Test #3: Displays errors when user already exists")
     public void displaysErrorsWhenUserAlreadyExists() {
 
-        navPage.getLinkSignUp().click();
+        navPage.getSignUpLink().click();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/signup",
                 "Not on signup page.");
 
-        signupPage.inputName().sendKeys("Another User");
-        signupPage.inputEmail().sendKeys("admin@admin.com");
-        signupPage.inputPassword().sendKeys("12345");
-        signupPage.inputConfirmPassword().sendKeys("12345");
-        signupPage.buttonSignMeUp().click();
+        signupPage.getNameInput().sendKeys("Another User");
+        signupPage.getEmailInput().sendKeys("admin@admin.com");
+        signupPage.getPasswordInput().sendKeys("12345");
+        signupPage.getConfirmPasswordInput().sendKeys("12345");
+        signupPage.getSignMeUpButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
@@ -67,23 +67,23 @@ public class SignupTests extends BaseTest {
 
     @Test (priority = 40)
     @Description("Test #4: Signup")
-    public void signup() throws InterruptedException {
+    public void signup() {
 
-        navPage.getLinkSignUp().click();
+        navPage.getSignUpLink().click();
 
-        signupPage.inputName().sendKeys("Dimitrije Mandić");
-        signupPage.inputEmail().sendKeys("dimitrije.mandic@itbootcamp.rs");
-        signupPage.inputPassword().sendKeys("12345");
-        signupPage.inputConfirmPassword().sendKeys("12345");
-        signupPage.buttonSignMeUp().click();
-        Thread.sleep(1000); // test docs require driver.get(baseUrl + "/home") instead, which doesn't seem to work
+        signupPage.getNameInput().sendKeys("Dimitrije Mandić");
+        signupPage.getEmailInput().sendKeys("dimitrije.mandic@itbootcamp.rs");
+        signupPage.getPasswordInput().sendKeys("12345");
+        signupPage.getConfirmPasswordInput().sendKeys("12345");
+        signupPage.getSignMeUpButton().click();
+        messagePopUpPage.waitForProgressBarToBecomeInvisible();
 
         Assert.assertTrue(messagePopUpPage.getVerificationDialogHeader().getText()
                 .contains("IMPORTANT: Verify your account"),
                 "Incorrect or missing message.");
 
-        messagePopUpPage.buttonCloseVerificationDialog().click();
-        navPage.buttonLogout().click();
+        messagePopUpPage.getCloseVerificationDialogButton().click();
+        navPage.getLogoutButton().click();
 
 //      when performing this test multiple times within 30min., change the e-mail address in line 75 so it doesn't crash
 

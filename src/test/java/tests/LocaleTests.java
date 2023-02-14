@@ -10,8 +10,8 @@ public class LocaleTests extends BaseTest {
     @Description("Test #1: Set locale to ES")
     public void setLocaleToEs() {
 
-        navPage.buttonLanguageSelect().click();
-        navPage.buttonLanguageEs().click();
+        navPage.getLocaleActivationButton().click();
+        navPage.getLanguageButtonEs().click();
 
         Assert.assertEquals(navPage.getPageHeader().getText(),
                 "Página de aterrizaje",
@@ -23,8 +23,8 @@ public class LocaleTests extends BaseTest {
     @Description("Test #2: Set locale to EN")
     public void setLocaleToEn() {
 
-        navPage.buttonLanguageSelect().click();
-        navPage.buttonLanguageEn().click();
+        navPage.getLocaleActivationButton().click();
+        navPage.getLanguageButtonEn().click();
 
         Assert.assertEquals(navPage.getPageHeader().getText(),
                 "Landing",
@@ -36,8 +36,8 @@ public class LocaleTests extends BaseTest {
     @Description("Test #3: Set locale to CN")
     public void setLocaleToCn() {
 
-        navPage.buttonLanguageSelect().click();
-        navPage.buttonLanguageCn().click();
+        navPage.getLocaleActivationButton().click();
+        navPage.getLanguageButtonCn().click();
 
         Assert.assertEquals(navPage.getPageHeader().getText(),
                 "首页",
@@ -49,8 +49,8 @@ public class LocaleTests extends BaseTest {
     @Description("Test #4: Set locale to FR")
     public void setLocaleToFr() {
 
-        navPage.buttonLanguageSelect().click();
-        navPage.buttonLanguageFr().click();
+        navPage.getLocaleActivationButton().click();
+        navPage.getLanguageButtonFr().click();
 
         Assert.assertEquals(navPage.getPageHeader().getText(),
                 "Page d'atterrissage",
@@ -62,8 +62,8 @@ public class LocaleTests extends BaseTest {
     @Description("Test #5: Set locale to UA")
     public void setLocaleToUa() {
 
-        navPage.buttonLanguageSelect().click();
-        navPage.buttonLanguageUa().click();
+        navPage.getLocaleActivationButton().click();
+        navPage.getLanguageButtonUa().click();
 
         Assert.assertEquals(navPage.getPageHeader().getText(),
                 "Лендінг",

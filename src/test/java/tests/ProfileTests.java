@@ -12,10 +12,10 @@ public class ProfileTests extends BaseTest {
     @Description("Test #1: Visits profile page")
     public void visitsProfilePage() {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("admin@admin.com");
-        loginPage.inputPassword().sendKeys("12345");
-        loginPage.buttonLogin().click();
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getPasswordInput().sendKeys("12345");
+        loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
         driver.get(baseUrl + "/profile");
 
@@ -23,13 +23,13 @@ public class ProfileTests extends BaseTest {
                 baseUrl + "/profile",
                 "Not on profile page.");
 
-        new Actions(driver).moveToElement(profilePage.inputEmail()).click().perform();
+        new Actions(driver).moveToElement(profilePage.getEmailInput()).click().perform();
 
-        Assert.assertEquals(profilePage.inputEmail().getAttribute("value"),
+        Assert.assertEquals(profilePage.getEmailInput().getAttribute("value"),
                 "admin@admin.com",
                 "Unexpected e-mail address.");
 
-        navPage.buttonLogout().click();
+        navPage.getLogoutButton().click();
 
     }
 
@@ -37,51 +37,51 @@ public class ProfileTests extends BaseTest {
     @Description("Test #2: Checks input types")
     public void checksInputTypes() {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("admin@admin.com");
-        loginPage.inputPassword().sendKeys("12345");
-        loginPage.buttonLogin().click();
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getPasswordInput().sendKeys("12345");
+        loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
-        navPage.getLinkMyProfile().click();
+        navPage.getMyProfileLink().click();
 
-        Assert.assertEquals(profilePage.inputEmail().getAttribute("type"),
+        Assert.assertEquals(profilePage.getEmailInput().getAttribute("type"),
                 "email",
                 "Input type not 'email'.");
 
-        Assert.assertEquals(profilePage.inputEmail().getAttribute("disabled"),
+        Assert.assertEquals(profilePage.getEmailInput().getAttribute("disabled"),
                 "true",
                 "Input not disabled.");
 
 //        new Actions(driver).moveToElement(profilePage.inputEmail()).click().perform();
 
-        Assert.assertTrue(profilePage.inputEmail().getAttribute("outerHTML")
+        Assert.assertTrue(profilePage.getEmailInput().getAttribute("outerHTML")
                 .contains("disabled=\"disabled\""));
 
-        Assert.assertEquals(profilePage.inputName().getAttribute("type"),
+        Assert.assertEquals(profilePage.getNameInput().getAttribute("type"),
                 "text",
                 "Input type not 'text'.");
 
-        Assert.assertEquals(profilePage.inputCity().getAttribute("type"),
+        Assert.assertEquals(profilePage.getCityInput().getAttribute("type"),
                 "text",
                 "Input type not 'text'.");
 
-        Assert.assertEquals(profilePage.inputCountry().getAttribute("type"),
+        Assert.assertEquals(profilePage.getCountryInput().getAttribute("type"),
                 "text",
                 "Input type not 'text'.");
 
-        Assert.assertEquals(profilePage.inputUrlTwitter().getAttribute("type"),
+        Assert.assertEquals(profilePage.getUrlTwitterInput().getAttribute("type"),
                 "url",
                 "Input type not 'url'.");
 
-        Assert.assertEquals(profilePage.inputUrlGitHub().getAttribute("type"),
+        Assert.assertEquals(profilePage.getUrlGitHubInput().getAttribute("type"),
                 "url",
                 "Input type not 'url'.");
 
-        Assert.assertEquals(profilePage.inputPhone().getAttribute("type"),
+        Assert.assertEquals(profilePage.getPhoneInput().getAttribute("type"),
                 "tel",
                 "Input type not 'tel'.");
 
-        navPage.buttonLogout().click();
+        navPage.getLogoutButton().click();
 
     }
 
@@ -89,71 +89,71 @@ public class ProfileTests extends BaseTest {
     @Description("Test #3: Edits profile")
     public void editsProfile() throws InterruptedException {
 
-        navPage.getLinkLogin().click();
-        loginPage.inputEmail().sendKeys("admin@admin.com");
-        loginPage.inputPassword().sendKeys("12345");
-        loginPage.buttonLogin().click();
+        navPage.getLoginLink().click();
+        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getPasswordInput().sendKeys("12345");
+        loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
-        navPage.getLinkMyProfile().click();
+        navPage.getMyProfileLink().click();
         Thread.sleep(1000);
 
-        profilePage.inputName().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        profilePage.inputName().sendKeys(Keys.DELETE);
-        profilePage.inputName().sendKeys("Dimitrije Mandić");
+        profilePage.getNameInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        profilePage.getNameInput().sendKeys(Keys.DELETE);
+        profilePage.getNameInput().sendKeys("Dimitrije Mandić");
 
-        profilePage.inputPhone().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        profilePage.inputPhone().sendKeys(Keys.DELETE);
-        profilePage.inputPhone().sendKeys("+38161283223");
+        profilePage.getPhoneInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        profilePage.getPhoneInput().sendKeys(Keys.DELETE);
+        profilePage.getPhoneInput().sendKeys("+38161283223");
 
-        profilePage.inputCity().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        profilePage.inputCity().sendKeys(Keys.DELETE);
-        profilePage.inputCity().sendKeys("Bucaramanga");
+        profilePage.getCityInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        profilePage.getCityInput().sendKeys(Keys.DELETE);
+        profilePage.getCityInput().sendKeys("Bucaramanga");
 
-        profilePage.inputCountry().click();
-        profilePage.inputCountry().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        profilePage.inputCountry().sendKeys(Keys.DELETE);
-        profilePage.inputCountry().sendKeys("Spain");
+        profilePage.getCountryInput().click();
+        profilePage.getCountryInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        profilePage.getCountryInput().sendKeys(Keys.DELETE);
+        profilePage.getCountryInput().sendKeys("Spain");
 
-        profilePage.inputUrlTwitter().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        profilePage.inputUrlTwitter().sendKeys(Keys.DELETE);
-        profilePage.inputUrlTwitter().sendKeys("https://twitter.com/profile/milan1232");
+        profilePage.getUrlTwitterInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        profilePage.getUrlTwitterInput().sendKeys(Keys.DELETE);
+        profilePage.getUrlTwitterInput().sendKeys("https://twitter.com/profile/milan1232");
 
-        profilePage.inputUrlGitHub().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        profilePage.inputUrlGitHub().sendKeys(Keys.DELETE);
-        profilePage.inputUrlGitHub().sendKeys("https://github.com/shaikidow");
+        profilePage.getUrlGitHubInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        profilePage.getUrlGitHubInput().sendKeys(Keys.DELETE);
+        profilePage.getUrlGitHubInput().sendKeys("https://github.com/shaikidow");
 
-        profilePage.buttonSave().click();
+        profilePage.getSaveButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
                         .contains("Profile saved successfuly")),
                 "Incorrect or missing message.");
 
-        Assert.assertEquals(profilePage.inputName().getAttribute("value"),
+        Assert.assertEquals(profilePage.getNameInput().getAttribute("value"),
                 "Dimitrije Mandić",
                 "Unexpected profile name.");
 
-        Assert.assertEquals(profilePage.inputPhone().getAttribute("value"),
+        Assert.assertEquals(profilePage.getPhoneInput().getAttribute("value"),
                 "+38161283223",
                 "Unexpected phone number.");
 
-        Assert.assertEquals(profilePage.inputCity().getAttribute("value"),
+        Assert.assertEquals(profilePage.getCityInput().getAttribute("value"),
                 "Bucaramanga",
                 "Unexpected city.");
 
-        Assert.assertEquals(profilePage.inputCountry().getAttribute("value"),
+        Assert.assertEquals(profilePage.getCountryInput().getAttribute("value"),
                 "Spain",
                 "Unexpected country.");
 
-        Assert.assertEquals(profilePage.inputUrlTwitter().getAttribute("value"),
+        Assert.assertEquals(profilePage.getUrlTwitterInput().getAttribute("value"),
                 "https://twitter.com/profile/milan1232",
                 "Unexpected Twitter URL.");
 
-        Assert.assertEquals(profilePage.inputUrlGitHub().getAttribute("value"),
+        Assert.assertEquals(profilePage.getUrlGitHubInput().getAttribute("value"),
                 "https://github.com/shaikidow",
                 "Unexpected GitHub URL.");
 
-        navPage.buttonLogout().click();
+        navPage.getLogoutButton().click();
 
     }
 

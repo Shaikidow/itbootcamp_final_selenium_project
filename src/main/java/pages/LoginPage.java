@@ -11,15 +11,15 @@ public class LoginPage extends BasePage {
         super(driver, wait);
     }
 
-    public WebElement inputEmail() {
+    public WebElement getEmailInput() {
         return driver.findElement(By.id("email"));
     }
 
-    public WebElement inputPassword() {
+    public WebElement getPasswordInput() {
         return driver.findElement(By.id("password"));
     }
 
-    public WebElement buttonLogin() {
+    public WebElement getLoginButton() {
         return driver.findElement(By.xpath("//button[@type='submit']"));
 //        return driver.findElement(By.className("column")).findElement(By.tagName("button"));
     }

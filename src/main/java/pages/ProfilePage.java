@@ -11,35 +11,35 @@ public class ProfilePage extends BasePage {
         super(driver, wait);
     }
 
-    public WebElement inputEmail() {
+    public WebElement getEmailInput() {
         return driver.findElement(By.id("email"));
     }
 
-    public WebElement inputName() {
+    public WebElement getNameInput() {
         return driver.findElement(By.id("name"));
     }
 
-    public WebElement inputCity() {
+    public WebElement getCityInput() {
         return driver.findElement(By.id("city"));
     }
 
-    public WebElement inputCountry() {
+    public WebElement getCountryInput() {
         return driver.findElement(By.id("country"));
     }
 
-    public WebElement inputUrlTwitter() {
+    public WebElement getUrlTwitterInput() {
         return driver.findElement(By.id("urlTwitter"));
     }
 
-    public WebElement inputUrlGitHub() {
+    public WebElement getUrlGitHubInput() {
         return driver.findElement(By.id("urlGitHub"));
     }
 
-    public WebElement inputPhone() {
+    public WebElement getPhoneInput() {
         return driver.findElement(By.id("phone"));
     }
 
-    public WebElement buttonSave() {
+    public WebElement getSaveButton() {
         return driver.findElement(By.className("btnSave"));
     }
 
