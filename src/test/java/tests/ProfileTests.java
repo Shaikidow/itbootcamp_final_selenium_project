@@ -52,6 +52,11 @@ public class ProfileTests extends BaseTest {
                 "true",
                 "Input not disabled.");
 
+//        new Actions(driver).moveToElement(profilePage.inputEmail()).click().perform();
+
+        Assert.assertTrue(profilePage.inputEmail().getAttribute("outerHTML")
+                .contains("disabled=\"disabled\""));
+
         Assert.assertEquals(profilePage.inputName().getAttribute("type"),
                 "text",
                 "Input type not 'text'.");
