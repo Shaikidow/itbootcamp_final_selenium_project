@@ -52,8 +52,10 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
+
         driver.get(baseUrl);
         driver.manage().window().setSize(new Dimension(1920, 1080));
+
     }
 
     @AfterMethod
@@ -69,6 +71,7 @@ public abstract class BaseTest {
                     new File("screenshots/" + result.getName() + " - " + timestamp + ".png").toPath());
 
         }
+
     }
 
     @AfterClass
