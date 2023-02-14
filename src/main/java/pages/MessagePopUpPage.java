@@ -22,13 +22,14 @@ public class MessagePopUpPage extends BasePage {
 
     public List<WebElement> getPopupElementsContainingText() {
         return driver.findElements(By.xpath
-                ("//*[contains(@class, 'v-snack__wrapper')]//*[contains(text(), '')]"));
+                ("//*[contains(@class, 'v-snack__wrapper')]" +
+                               "//*[contains(text(), '')]"));
     }
 
     public WebElement buttonClosePopup() {
         return driver.findElement(By.xpath
                 ("//div[contains(@class, 'v-snack__wrapper') " +
-                        "and not(contains(@style, 'display: none;'))]"))
+                               "and not(contains(@style, 'display: none;'))]"))
                 .findElement(By.tagName("button"));
     }
 
@@ -42,6 +43,11 @@ public class MessagePopUpPage extends BasePage {
 
     public WebElement buttonCloseVerificationDialog() {
         return driver.findElement(By.className("btnClose"));
+    }
+
+    public void waitForProgressBarToBecomeInvisible() {
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath
+                ("//div[@role='progressbar']"))));
     }
 
 }
