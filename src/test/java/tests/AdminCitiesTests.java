@@ -11,12 +11,14 @@ public class AdminCitiesTests extends BaseTest {
     public void visitsAdminCitiesPageAndListsCities() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
         navPage.getAdminButton().click();
         navPage.getAdminCitiesLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/admin/cities",
@@ -30,6 +32,7 @@ public class AdminCitiesTests extends BaseTest {
 
         navPage.getAdminButton().click();
         navPage.getAdminCitiesLink().click();
+        navPage.waitForPageToLoad();
         citiesPage.getNewItemButton().click();
         citiesPage.waitForNewEditItemDialogToBecomeVisible();
 
@@ -45,6 +48,7 @@ public class AdminCitiesTests extends BaseTest {
 
         navPage.getAdminButton().click();
         navPage.getAdminCitiesLink().click();
+        navPage.waitForPageToLoad();
         citiesPage.getNewItemButton().click();
         citiesPage.waitForNewEditItemDialogToBecomeVisible();
         citiesPage.getNameInput().sendKeys("Dimitrije Mandić's city");
@@ -63,6 +67,7 @@ public class AdminCitiesTests extends BaseTest {
 
         navPage.getAdminButton().click();
         navPage.getAdminCitiesLink().click();
+        navPage.waitForPageToLoad();
         citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city");
         citiesPage.waitForNumberOfTableRowsToAppear(1);
         citiesPage.getEditButtonByTableRow(1).click();
@@ -82,6 +87,7 @@ public class AdminCitiesTests extends BaseTest {
 
         navPage.getAdminButton().click();
         navPage.getAdminCitiesLink().click();
+        navPage.waitForPageToLoad();
         citiesPage.getSearchInput().click();
         citiesPage.getSearchInput().clear();
         citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city Edited");
@@ -99,6 +105,7 @@ public class AdminCitiesTests extends BaseTest {
 
         navPage.getAdminButton().click();
         navPage.getAdminCitiesLink().click();
+        navPage.waitForPageToLoad();
         citiesPage.getSearchInput().click();
         citiesPage.getSearchInput().clear();
         citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city Edited");

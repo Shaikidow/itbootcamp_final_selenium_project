@@ -13,11 +13,13 @@ public class ProfileTests extends BaseTest {
     public void visitsProfilePage() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
         driver.get(baseUrl + "/profile");
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/profile",
@@ -38,11 +40,13 @@ public class ProfileTests extends BaseTest {
     public void checksInputTypes() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
         navPage.getMyProfileLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(profilePage.getEmailInput().getAttribute("type"),
                 "email",
@@ -87,16 +91,18 @@ public class ProfileTests extends BaseTest {
 
     @Test (priority = 30)
     @Description("Test #3: Edits profile")
-    public void editsProfile() throws InterruptedException {
+    public void editsProfile() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
         navPage.getMyProfileLink().click();
-        Thread.sleep(1000);
+        navPage.waitForPageToLoad();
 
+//        profilePage.getNameInput().click();
         profilePage.getNameInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
         profilePage.getNameInput().sendKeys(Keys.DELETE);
         profilePage.getNameInput().sendKeys("Dimitrije Mandić");

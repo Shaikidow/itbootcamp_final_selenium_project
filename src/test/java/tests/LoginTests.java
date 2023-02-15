@@ -13,6 +13,7 @@ public class LoginTests extends BaseTest {
         navPage.getLocaleActivationButton().click();
         navPage.getLanguageButtonEn().click();
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/login",
@@ -25,6 +26,7 @@ public class LoginTests extends BaseTest {
     public void checksInputTypes() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(loginPage.getEmailInput().getAttribute("type"),
                 "email",
@@ -41,6 +43,7 @@ public class LoginTests extends BaseTest {
     public void displaysErrorsWhenUserDoesNotExist() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("non-existing-user@gmail.com");
         loginPage.getPasswordInput().sendKeys("password123");
         loginPage.getLoginButton().click();
@@ -61,6 +64,7 @@ public class LoginTests extends BaseTest {
     public void displaysErrorsWhenPasswordIsWrong() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("password123");
         loginPage.getLoginButton().click();
@@ -81,6 +85,7 @@ public class LoginTests extends BaseTest {
     public void login() {
 
         navPage.getLoginLink().click();
+        navPage.waitForPageToLoad();
         loginPage.getEmailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();

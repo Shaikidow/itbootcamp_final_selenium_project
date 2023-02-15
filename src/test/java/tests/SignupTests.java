@@ -11,6 +11,7 @@ public class SignupTests extends BaseTest {
     public void visitsSignupPage() {
 
         navPage.getSignUpLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/signup",
@@ -23,6 +24,7 @@ public class SignupTests extends BaseTest {
     public void checksInputTypes() {
 
         navPage.getSignUpLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(signupPage.getEmailInput().getAttribute("type"),
                 "email",
@@ -43,6 +45,7 @@ public class SignupTests extends BaseTest {
     public void displaysErrorsWhenUserAlreadyExists() {
 
         navPage.getSignUpLink().click();
+        navPage.waitForPageToLoad();
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/signup",
@@ -70,6 +73,7 @@ public class SignupTests extends BaseTest {
     public void signup() {
 
         navPage.getSignUpLink().click();
+        navPage.waitForPageToLoad();
 
         signupPage.getNameInput().sendKeys("Dimitrije Mandić");
         signupPage.getEmailInput().sendKeys("dimitrije.mandic@itbootcamp.rs");
