@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class NavPage extends BasePage {
@@ -73,6 +74,10 @@ public class NavPage extends BasePage {
 
     public WebElement getLanguageButtonUa() {
         return driver.findElement(By.className("btnUA"));
+    }
+
+    public void waitForPageToLoad() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("container--fluid")));
     }
 
 }
