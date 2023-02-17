@@ -20,7 +20,7 @@ public class MessagePopUpPage extends BasePage {
                         "and not(contains(@style, 'display: none;'))]")));
     }
 
-    public List<WebElement> getPopupElementsContainingText() {
+    public List<WebElement> getPopupElementsContainingText() { // gets all the text elements from any given active popup
         return driver.findElements(By.xpath
                 ("//*[contains(@class, 'v-snack__wrapper')]" +
                                "//*[contains(text(), '')]"));
@@ -45,7 +45,7 @@ public class MessagePopUpPage extends BasePage {
         return driver.findElement(By.className("btnClose"));
     }
 
-    public void waitForProgressBarToBecomeInvisible() {
+    public void waitForProgressBarToBecomeInvisible() { // waits for full form submissions, based on progress animations
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath
                 ("//div[@role='progressbar']"))));
     }

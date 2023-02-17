@@ -76,7 +76,7 @@ public class NavPage extends BasePage {
         return driver.findElement(By.className("btnUA"));
     }
 
-    public void waitForPageToLoad() {
+    public void waitForPageToLoad() { // waiting for the first container element to load seems to provide optimal speeds
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("container--fluid")));
     }
 
