@@ -34,7 +34,7 @@ public abstract class BaseTest {
     protected ProfilePage profilePage;
 
     @BeforeClass
-    public void setup() {
+    public void setup() { // loads all the pages for all the tests
 
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
         driver = new ChromeDriver();
@@ -51,7 +51,7 @@ public abstract class BaseTest {
     }
 
     @BeforeMethod
-    public void beforeMethod() {
+    public void beforeMethod() { // a bit easier to manage unmaximised test windows, as they don't get fixed to the grid
 
         driver.get(baseUrl);
         driver.manage().window().setSize(new Dimension(1920, 1080));
@@ -59,13 +59,13 @@ public abstract class BaseTest {
     }
 
     @AfterMethod
-    public void afterMethod(ITestResult result) throws IOException {
+    public void afterMethod(ITestResult result) throws IOException { // creates screenshot of the moment of test failure
 
         if (result.getStatus() == ITestResult.FAILURE) {
 
             File file = ((TakesScreenshot) driver)
                     .getScreenshotAs(OutputType.FILE);
-            String timestamp = new SimpleDateFormat("dd-MM-yyyy__hh-mm-ss")
+            String timestamp = new SimpleDateFormat("dd-MM-yyyy__hh-mm-ss") // accurate timestamps are desirable!
                     .format(new Date());
             Files.copy(file.toPath(),
                     new File("screenshots/" + result.getName() + " - " + timestamp + ".png").toPath());
@@ -77,7 +77,7 @@ public abstract class BaseTest {
     @AfterClass
     public void afterClass() throws InterruptedException {
 
-        Thread.sleep(2000);
+        Thread.sleep(2000); // the explicit waiting time at the end of each test class can be reduced if so needed
         driver.quit();
 
     }

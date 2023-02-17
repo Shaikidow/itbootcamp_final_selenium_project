@@ -14,11 +14,11 @@ public class ProfileTests extends BaseTest {
 
         navPage.getLoginLink().click();
         navPage.waitForPageToLoad();
-        loginPage.getEmailInput().sendKeys("admin@admin.com");
+        loginPage.getEmailInput().sendKeys("admin@admin.com"); // we need the super admin logged in for this
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
-        driver.get(baseUrl + "/profile");
+        navPage.getMyProfileLink().click();
         navPage.waitForPageToLoad();
 
         Assert.assertEquals(driver.getCurrentUrl(),
@@ -27,11 +27,13 @@ public class ProfileTests extends BaseTest {
 
         new Actions(driver).moveToElement(profilePage.getEmailInput()).click().perform();
 
+//      the above action chain is necessary to focus on the email input, because it's fully overlapped by a span element
+
         Assert.assertEquals(profilePage.getEmailInput().getAttribute("value"),
                 "admin@admin.com",
-                "Unexpected e-mail address.");
+                "E-mail address not 'admin@admin.com'.");
 
-        navPage.getLogoutButton().click();
+        navPage.getLogoutButton().click(); // logging out is mandatory for the sequential passing of all the tests here!
 
     }
 
@@ -54,12 +56,11 @@ public class ProfileTests extends BaseTest {
 
         Assert.assertEquals(profilePage.getEmailInput().getAttribute("disabled"),
                 "true",
-                "Input not disabled.");
-
-//        new Actions(driver).moveToElement(profilePage.inputEmail()).click().perform();
+                "Input not disabled."); // this functions like assertTrue, as 'disabled' is a boolean attribute
+                                                // zero ideas whatsoever about why no focusing is necessary here, though
 
         Assert.assertTrue(profilePage.getEmailInput().getAttribute("outerHTML")
-                .contains("disabled=\"disabled\""));
+                .contains("disabled=\"disabled\"")); // I just added this to show that the HTML says disabled='disabled'
 
         Assert.assertEquals(profilePage.getNameInput().getAttribute("type"),
                 "text",
@@ -91,7 +92,7 @@ public class ProfileTests extends BaseTest {
 
     @Test (priority = 30)
     @Description("Test #3: Edits profile")
-    public void editsProfile() {
+    public void editsProfile() throws InterruptedException {
 
         navPage.getLoginLink().click();
         navPage.waitForPageToLoad();
@@ -100,9 +101,8 @@ public class ProfileTests extends BaseTest {
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
         navPage.getMyProfileLink().click();
-        navPage.waitForPageToLoad();
+        Thread.sleep(1000); // I deemed an explicit waiter necessary here, because waitForPageToLoad often crashed
 
-//        profilePage.getNameInput().click();
         profilePage.getNameInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
         profilePage.getNameInput().sendKeys(Keys.DELETE);
         profilePage.getNameInput().sendKeys("Dimitrije Mandić");
@@ -122,7 +122,7 @@ public class ProfileTests extends BaseTest {
 
         profilePage.getUrlTwitterInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
         profilePage.getUrlTwitterInput().sendKeys(Keys.DELETE);
-        profilePage.getUrlTwitterInput().sendKeys("https://twitter.com/profile/milan1232");
+        profilePage.getUrlTwitterInput().sendKeys("https://twitter.com/profile/milan1232"); // not me but OK
 
         profilePage.getUrlGitHubInput().sendKeys(Keys.chord(Keys.CONTROL, "a"));
         profilePage.getUrlGitHubInput().sendKeys(Keys.DELETE);
@@ -133,31 +133,31 @@ public class ProfileTests extends BaseTest {
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
                         .contains("Profile saved successfuly")),
-                "Incorrect or missing message.");
+                "Incorrect or missing message."); // another misspelling on the site itself, like in LoginTests
 
         Assert.assertEquals(profilePage.getNameInput().getAttribute("value"),
                 "Dimitrije Mandić",
-                "Unexpected profile name.");
+                "Incorrect or missing profile name."); // calls DOM attributes/properties if unwritten in HTML!
 
         Assert.assertEquals(profilePage.getPhoneInput().getAttribute("value"),
                 "+38161283223",
-                "Unexpected phone number.");
+                "Incorrect or missing phone number.");
 
         Assert.assertEquals(profilePage.getCityInput().getAttribute("value"),
                 "Bucaramanga",
-                "Unexpected city.");
+                "Incorrect or missing city.");
 
         Assert.assertEquals(profilePage.getCountryInput().getAttribute("value"),
                 "Spain",
-                "Unexpected country.");
+                "Incorrect or missing country.");
 
         Assert.assertEquals(profilePage.getUrlTwitterInput().getAttribute("value"),
                 "https://twitter.com/profile/milan1232",
-                "Unexpected Twitter URL.");
+                "Incorrect or missing Twitter URL.");
 
         Assert.assertEquals(profilePage.getUrlGitHubInput().getAttribute("value"),
                 "https://github.com/shaikidow",
-                "Unexpected GitHub URL.");
+                "Incorrect or missing GitHub URL.");
 
         navPage.getLogoutButton().click();
 

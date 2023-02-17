@@ -16,7 +16,7 @@ public class AdminCitiesTests extends BaseTest {
         loginPage.getPasswordInput().sendKeys("12345");
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
-        navPage.getAdminButton().click();
+        navPage.getAdminButton().click(); // this button opens up a dropdown menu with two options, "Cities" and "Users"
         navPage.getAdminCitiesLink().click();
         navPage.waitForPageToLoad();
 
@@ -51,7 +51,7 @@ public class AdminCitiesTests extends BaseTest {
         navPage.waitForPageToLoad();
         citiesPage.getNewItemButton().click();
         citiesPage.waitForNewEditItemDialogToBecomeVisible();
-        citiesPage.getNameInput().sendKeys("Dimitrije Mandić's city");
+        citiesPage.getNameInput().sendKeys("Dimitrije Mandić's city"); // again, it could be some other name
         citiesPage.getSaveButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
@@ -69,9 +69,9 @@ public class AdminCitiesTests extends BaseTest {
         navPage.getAdminCitiesLink().click();
         navPage.waitForPageToLoad();
         citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city");
-        citiesPage.waitForNumberOfTableRowsToAppear(1);
+        citiesPage.waitForNumberOfTableRowsToAppear(1); // there should only be one option with this name, hence the "1"
         citiesPage.getEditButtonByTableRow(1).click();
-        citiesPage.getNameInput().sendKeys(" Edited");
+        citiesPage.getNameInput().sendKeys(" Edited"); // this just gets appended to the existing name's end
         citiesPage.getSaveButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
@@ -89,7 +89,7 @@ public class AdminCitiesTests extends BaseTest {
         navPage.getAdminCitiesLink().click();
         navPage.waitForPageToLoad();
         citiesPage.getSearchInput().click();
-        citiesPage.getSearchInput().clear();
+        citiesPage.getSearchInput().clear(); // however, unlike the name input bar, the search bar has got to be cleared
         citiesPage.getSearchInput().sendKeys("Dimitrije Mandić's city Edited");
         citiesPage.waitForNumberOfTableRowsToAppear(1);
 

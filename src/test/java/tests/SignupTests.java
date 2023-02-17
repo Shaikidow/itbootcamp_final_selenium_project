@@ -51,7 +51,7 @@ public class SignupTests extends BaseTest {
                 baseUrl + "/signup",
                 "Not on signup page.");
 
-        signupPage.getNameInput().sendKeys("Another User");
+        signupPage.getNameInput().sendKeys("Another User"); // this sometimes messes up the SuperAdmin login
         signupPage.getEmailInput().sendKeys("admin@admin.com");
         signupPage.getPasswordInput().sendKeys("12345");
         signupPage.getConfirmPasswordInput().sendKeys("12345");
@@ -75,7 +75,7 @@ public class SignupTests extends BaseTest {
         navPage.getSignUpLink().click();
         navPage.waitForPageToLoad();
 
-        signupPage.getNameInput().sendKeys("Dimitrije Mandić");
+        signupPage.getNameInput().sendKeys("Dimitrije Mandić"); // could be anyone's name, I just chose mine
         signupPage.getEmailInput().sendKeys("dimitrije.mandic@itbootcamp.rs");
         signupPage.getPasswordInput().sendKeys("12345");
         signupPage.getConfirmPasswordInput().sendKeys("12345");

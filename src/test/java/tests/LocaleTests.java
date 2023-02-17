@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class LocaleTests extends BaseTest {
 
     @Test(priority = 10)
-    @Description("Test #1: Set locale to ES")
+    @Description("Test #1: Set locale to ES") // tests the Spanish main page only
     public void setLocaleToEs() {
 
         navPage.getLocaleActivationButton().click();
@@ -20,7 +20,7 @@ public class LocaleTests extends BaseTest {
     }
 
     @Test (priority = 20)
-    @Description("Test #2: Set locale to EN")
+    @Description("Test #2: Set locale to EN") // tests the English main page only
     public void setLocaleToEn() {
 
         navPage.getLocaleActivationButton().click();
@@ -33,7 +33,7 @@ public class LocaleTests extends BaseTest {
     }
 
     @Test (priority = 30)
-    @Description("Test #3: Set locale to CN")
+    @Description("Test #3: Set locale to CN") // tests the Chinese main page only
     public void setLocaleToCn() {
 
         navPage.getLocaleActivationButton().click();
@@ -46,7 +46,7 @@ public class LocaleTests extends BaseTest {
     }
 
     @Test (priority = 40)
-    @Description("Test #4: Set locale to FR")
+    @Description("Test #4: Set locale to FR") // tests the French main page only
     public void setLocaleToFr() {
 
         navPage.getLocaleActivationButton().click();
@@ -59,7 +59,7 @@ public class LocaleTests extends BaseTest {
     }
 
     @Test (priority = 50)
-    @Description("Test #5: Set locale to UA")
+    @Description("Test #5: Set locale to UA") // tests the Ukrainian main page only, seems like it's a new addition here
     public void setLocaleToUa() {
 
         navPage.getLocaleActivationButton().click();

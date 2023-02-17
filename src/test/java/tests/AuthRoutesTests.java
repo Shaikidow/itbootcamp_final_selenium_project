@@ -50,4 +50,6 @@ public class AuthRoutesTests extends BaseTest {
 
     }
 
+//  it's paramount (and default) for each and every single one of these tests that no user is logged in before the start
+
 }

@@ -10,8 +10,8 @@ public class LoginTests extends BaseTest {
     @Description("Test #1: Visits login page")
     public void visitsLoginPage() {
 
-        navPage.getLocaleActivationButton().click();
-        navPage.getLanguageButtonEn().click();
+        navPage.getLocaleActivationButton().click(); // I feel this was proposed so that the test wouldn't be too short?
+        navPage.getLanguageButtonEn().click(); // anyway, setting the language to English without thinking about it much
         navPage.getLoginLink().click();
         navPage.waitForPageToLoad();
 
@@ -44,14 +44,14 @@ public class LoginTests extends BaseTest {
 
         navPage.getLoginLink().click();
         navPage.waitForPageToLoad();
-        loginPage.getEmailInput().sendKeys("non-existing-user@gmail.com");
-        loginPage.getPasswordInput().sendKeys("password123");
+        loginPage.getEmailInput().sendKeys("non-existing-user@gmail.com"); // really what it says on the tin
+        loginPage.getPasswordInput().sendKeys("password123"); // same here - some arbitrary invalid password
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
         Assert.assertTrue(messagePopUpPage.getPopupElementsContainingText().stream().anyMatch(e->e.getText()
                         .contains("User does not exists")),
-                "Incorrect or missing message.");
+                "Incorrect or missing message."); // yes, it should say "exist", it's a misspelling on the site
 
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/login",
@@ -65,8 +65,8 @@ public class LoginTests extends BaseTest {
 
         navPage.getLoginLink().click();
         navPage.waitForPageToLoad();
-        loginPage.getEmailInput().sendKeys("admin@admin.com");
-        loginPage.getPasswordInput().sendKeys("password123");
+        loginPage.getEmailInput().sendKeys("admin@admin.com"); // e-mail for the super administrator account
+        loginPage.getPasswordInput().sendKeys("password123"); // still invalid
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForPopupToBecomeVisible();
 
@@ -91,10 +91,6 @@ public class LoginTests extends BaseTest {
         loginPage.getLoginButton().click();
         messagePopUpPage.waitForProgressBarToBecomeInvisible();
 
-//      here I would usually use
-//      wait.until(ExpectedConditions.urlToBe(baseUrl + "/home"));
-//      but aside from it looking redundant, implicit wait timeout would crash the test instead of merely making it fail
-
         Assert.assertEquals(driver.getCurrentUrl(),
                 baseUrl + "/home",
                 "Not on home page.");
@@ -106,7 +102,7 @@ public class LoginTests extends BaseTest {
     public void logout() {
 
         Assert.assertTrue(navPage.getLogoutButton().isDisplayed(),
-                "Logout button not visible.");
+                "Logout button not visible."); // if you can see it, you can click it
 
         navPage.getLogoutButton().click();
 
